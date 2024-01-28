@@ -52,15 +52,35 @@
   6. Pass By Need
 
 #### 1. Pass By Value
-- This method uses in-mode semantics.
+- This method uses **in-mode semantics.**
 - Changes made to formal parameters do not get transmitted back to the caller.
 - Any modifications to the formal parameter variable inside the called function or method affect only the separate storage location and will not be reflected in the actual parameter in the calling environment.
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/fede0c7e-7821-4e93-ad3a-a09e705fc0bd)
   
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/f32ceddc-3347-4ce2-95db-09036ee37f44)
 
+- Shortcomings of Pass By Value:
+  1. Inefficiency in storage allocation.
+  2. For objects and arrays, the copy semantics are costly.
 
+- c, C++ and Java support Pass  by Value.
 
+#### 2. Pass By Pointer
+- This technique uses a pointer.
+- In function we pass memory address (pointer) of a variable rather than passing the actual value of variable.
+- This passing technique allows the function to access and modify the content at that particular memory location.
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/6fd190bb-2c1b-4e77-aced-80dfaeb5b87c)
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/15b3ed4d-9cbe-4994-8a6e-502f53ecfff9)
+- Shortcomings of Pass By Pointer
+  1. Pointers can be null so null pointer Issues arises if properly not checked.
+  2. If more than one pointers point to the same memory location then changes made by one pointer affect other the other pointers which points to same memory location.
+  3. memory management should be done effectively using function like malloc and free.
+
+#### 3. Pass by Result
+- This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
+
+#### 4. Pass by Value-Result
+This method uses in/out-mode semantics. It is a combination of Pass-by-Value and Pass-by-Result. Just before the control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by value-result.
 
 
 
