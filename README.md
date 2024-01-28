@@ -100,12 +100,23 @@ This technique is used in programming languages such as Algol. In this technique
 ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/e24fa58d-268c-49d2-802d-16d63b14f5a8)
 
 
-#### 5. Pass by Result
-This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
 
-#### 6. Pass by Value-Result
+#### 5. Pass by Value-Result
 This method uses in/out-mode semantics. It is a combination of Pass-by-Value and Pass-by-Result. Just before the control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by value-result.
 
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/6443e8e2-1d54-4c36-b824-942db380a9b8)
+
+
+#### 6. Pass By Name
+In most programming languages, passing an expression as an argument causes the expression to be evaluated, and then the result of that evaluation is passed as an argument to the function. In pass-by-name, rather than pass the result of evaluating the expression, the expression is passed literally to the function. Within the execution of the function, the use of the parameter is replaced by the expression that was provided. Pass-by-name can be thought of as a symbolic or textual substitution.
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/208615a0-8ddd-4bba-8919-9597fb26f347)
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/b66dd73e-ac33-44c7-a101-961ba1df2f1d)
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/2f680205-14cb-4719-bc3e-146200eceb1f)
+
+
+#### 7. Pass by Result
+This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
 
 
 
