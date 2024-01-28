@@ -52,7 +52,12 @@
   6. Pass By Need
 
 #### 1. Pass By Value
-
+- This method uses in-mode semantics.
+- Changes made to formal parameters do not get transmitted back to the caller.
+- Any modifications to the formal parameter variable inside the called function or method affect only the separate storage location and will not be reflected in the actual parameter in the calling environment.
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/fede0c7e-7821-4e93-ad3a-a09e705fc0bd)
+  
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/f32ceddc-3347-4ce2-95db-09036ee37f44)
 
 
 
