@@ -119,12 +119,32 @@ In most programming languages, passing an expression as an argument causes the e
 This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
 
 
+## Static Scoping
+- Static scoping is also called **lexical scoping.**
+- In this scoping, a variable always refers to its top-level environment. This is a property of the program text and is unrelated to the run-time call stack.
+- Static scoping also makes it much easier to make a modular code as a programmer can figure out the scope just by looking at the code.
+- In contrast, dynamic scope requires the programmer to anticipate all possible dynamic contexts.
+- In most programming languages including C, C++, and Java, variables are always statically (or lexically) scoped i.e., binding of a variable can be determined by program text and is independent of the run-time function call stack.
+- To sum up, in static scoping the **compiler first searches in the current block, then in global variables, then in successively smaller scopes**.
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/e5c2fb93-3a69-4fa5-abe7-e5335a5a5713)
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/924ddc18-efd4-4a4c-8603-18d921a6b87b)
 
 
+## Dynamic Scoping
+- With dynamic scope, a global identifier refers to the identifier associated with the most recent environment and is uncommon in modern languages.
+- In technical terms, this means that each identifier has a global stack of bindings and the occurrence of an identifier is searched in the most recent binding.
+- In simpler terms, in dynamic scoping, the **compiler first searches the current block and then successively all the calling functions**.
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/657aea2b-8fd2-4549-b9ed-6854939a7709)
+
+**Output :**
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/7eff517a-4e08-4d84-8d95-d97054f49d3c)
 
 
-
-
+- **Perl** supports both ***dynamic and static scoping.*** Perl’s keyword “my” defines a statically scoped local variable, while the keyword “local” defines a dynamically scoped local variable. 
+ 
 
 
 
