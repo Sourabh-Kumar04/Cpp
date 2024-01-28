@@ -148,6 +148,104 @@ This method uses out-mode semantics. Just before control is transferred back to 
  
 
 
+## Arrays in C
+- Arrays are collections of data elements of the same kind that are stored in contiguous memory regions.
+- Arrays are derived data types in the C programming language that may hold primitive data types such as int, char, double, float, and so on.
+- The simplest data structure is an array, which allows each data element to be retrieved at random by using its index number.
+- An array, for example, may hold just integer or character members, but not both.
+- Each array may be accessed by using the array index, which must be a positive integer number surrounded by square braces. This begins with the numerical value 0 and finishes with one less than the array index value. An array[n] with n items, for example, array[0],array[1],…..array[n-1]. Where ‘0’ is the array’s lower bound and ‘n-1’ is the array’s upper bound.
+- The elements’ data types can be any valid data type, such as char, int, or float. The array declaration informs the compiler about the array’s type, name, and size.
+- The elements’ data types can be any valid data type, such as char, int, or float. The array declaration informs the compiler about the array’s type, name, and size
+
+
+##### **The time complexity of an array Table**
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/d3a7508f-1080-4a0e-87d4-903323994902)
+
+
+#### Characteristics of the Array:
+- Each element has the same data type and size, i.e. int = 4 bytes.
+- The array’s elements are stored in contiguous memory regions, with the initial element put in the smallest memory location.
+- Elements of the array may be accessed at random because we can determine the address of each element of the array using the specified base address and data element size.
+
+
+##### Types of Array
+- There are 3 types of arrays in C:
+  1. One-dimensional arrays
+  2. Two-dimensional arrays
+  3. Multidimensional arrays
+
+
+##### One-Dimensional Array
+- There is just one subscript in a one-dimensional array.
+- A one-dimensional (1D) array is one that is represented by a single row or column.
+- One-dimensional arrays are referred to as **vectors.**
+- In other words, it may be represented in a single dimension — width or height
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/a3ad03af-f4e8-49db-b1ee-e537842b8393)
+
+##### Two Dimensional Array
+- A two-dimensional array is known as a **matrix or table.**
+- A matrix contains two subscripts, one for each row and one for each column. In other terms, a two-dimensional array is a two-dimensional array within a one-dimensional array.
+- By multiplying the sizes of all the dimensions, the total number of items that may be held in a two array can be computed.
+- 
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/056b94fa-4f0a-471e-ab8b-ca19ebd1f596)
+
+
+- In C, an array with more than one dimension is referred to as a multidimensional array. A two-dimensional array is the most basic type of multidimensional array.
+- ***Syntax of 2D Array in C***
+  
+  array_name[size1] [size2];
+  
+  here,
+  - size1: Size of the first dimension.
+  - size2: Size of the second dimension.
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/93aad078-46e0-49ee-bb15-097cf7f30b9d)
+
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/0f064353-c88c-45e7-9a42-00dc381188f6)
+
+
+
+
+##### Multi-dimensional array
+- We may define an n-dimensional array by using n number of brackets [], where n is the dimension number.
+- By multiplying the sizes of all the dimensions, the total number of elements that may be held in a multidimensional array can be computed.
+- A three-dimensional array is a collection of two-dimensional arrays. The image below depicts a 3D array with three tables, each with four rows and two columns.
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/be319bb7-6cbb-4c09-a680-348bdb995f1e)
+
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/18d91cef-3748-4e82-bb3a-edfdf1168acc)
+
+ ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/8dafbf18-ad76-471c-9380-b2189dfdae99)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
 
 
 
