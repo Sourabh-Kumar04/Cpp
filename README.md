@@ -45,16 +45,18 @@
 ## Parameter Passing Technique in C/C++
 - There are different parameter passing techniques like -
   1. Pass By Value
-  2. Pass By Reference
-  3. Pass By Result
-  4. Pass By Name
-  5. Pass By Text
-  6. Pass By Need
+  2. Pass By Pointer
+  3. Pass By Reference
+  4. Pass By Result
+  5. Pass By Value-Result
+  6. Pass By Name
+  7. Pass By Need
 
 #### 1. Pass By Value
 - This method uses **in-mode semantics.**
 - Changes made to formal parameters do not get transmitted back to the caller.
 - Any modifications to the formal parameter variable inside the called function or method affect only the separate storage location and will not be reflected in the actual parameter in the calling environment.
+  
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/fede0c7e-7821-4e93-ad3a-a09e705fc0bd)
   
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/f32ceddc-3347-4ce2-95db-09036ee37f44)
@@ -69,17 +71,39 @@
 - This technique uses a pointer.
 - In function we pass memory address (pointer) of a variable rather than passing the actual value of variable.
 - This passing technique allows the function to access and modify the content at that particular memory location.
+  
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/6fd190bb-2c1b-4e77-aced-80dfaeb5b87c)
   ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/15b3ed4d-9cbe-4994-8a6e-502f53ecfff9)
 - Shortcomings of Pass By Pointer
   1. Pointers can be null so null pointer Issues arises if properly not checked.
   2. If more than one pointers point to the same memory location then changes made by one pointer affect other the other pointers which points to same memory location.
   3. memory management should be done effectively using function like malloc and free.
+ 
+#### 3. Pass By Reference
+- The call by reference method of passing arguments to a function copies the reference of an argument into the formal parameter.
+- Inside the function, the reference is used to access the actual argument used in the call.
+- This means that changes made to the parameter affect the passed argument.
+- To pass the value by reference, argument reference is passed to the functions just like any other value.
+- Example :
+  
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/1249c34f-f371-4e52-be54-671bc19c136e)
+  
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/0f3d2be3-c3f4-42ad-98d3-7fc7a60c86eb)
+  
+  Output:
+  
+ ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/00af20cb-9ce3-4231-82e0-a44cba876d06)
 
-#### 3. Pass by Result
-- This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
+#### 6. Pass By Name
+This technique is used in programming languages such as Algol. In this technique, the symbolic “name” of a variable is passed, which allows it both to be accessed and updated.
 
-#### 4. Pass by Value-Result
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/e24fa58d-268c-49d2-802d-16d63b14f5a8)
+
+
+#### 5. Pass by Result
+This method uses out-mode semantics. Just before control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by the result. In general, the pass-by-result technique is implemented by copying.
+
+#### 6. Pass by Value-Result
 This method uses in/out-mode semantics. It is a combination of Pass-by-Value and Pass-by-Result. Just before the control is transferred back to the caller, the value of the formal parameter is transmitted back to the actual parameter. This method is sometimes called call by value-result.
 
 
