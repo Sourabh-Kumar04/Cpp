@@ -217,13 +217,46 @@ This method uses out-mode semantics. Just before control is transferred back to 
  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/8dafbf18-ad76-471c-9380-b2189dfdae99)
 
 
+## Row Major & Column Major Order
+#### Row Major Order
+- Row major ordering assigns successive elements, moving across the rows and then down the next row, to successive memory locations.
+- In simple language, the elements of an array are stored in a Row-Wise fashion.
+  
+```
+To find the address of the element using row-major order uses the following formula:
+ Address of A[I][J] = B + W * ((I – LR) * N + (J – LC))   
 
+ I = Row Subset of an element whose address to be found, 
+ J = Column Subset of an element whose address to be found, 
+ B = Base address, 
+ W = Storage size of one element store in an array(in byte), 
+ LR = Lower Limit of row/start row index of the matrix(If not given assume it as zero), 
+ LC = Lower Limit of column/start column index of the matrix(If not given assume it as zero), 
+ N = Number of column given in the matrix.
+```
 
+#### Column Major Order
+- If elements of an array are stored in a column-major fashion means moving across the column and then to the next column then it’s in column-major order.
+```
+To find the address of the element using column-major order use the following formula:
 
+Address of A[I][J] = B + W * ((J – LC) * M + (I – LR))  
 
+I = Row Subset of an element whose address to be found, 
+J = Column Subset of an element whose address to be found, 
+B = Base address, 
+W = Storage size of one element store in any array(in byte), 
+LR = Lower Limit of row/start row index of matrix(If not given assume it as zero), 
+LC = Lower Limit of column/start column index of matrix(If not given assume it as zero), 
+M = Number of rows given in the matrix.
+```
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/58a23f99-bf34-4230-9421-c5e9f85b50ff)
 
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/cd1b071c-3221-4839-86fd-277c3e0e961f)
 
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/ba2dab50-b728-4751-8c50-04a03840afad)
 
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/0d6abf8c-1a31-46ee-a000-1968709c3e29)
 
 
 
