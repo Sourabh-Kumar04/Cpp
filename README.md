@@ -261,9 +261,50 @@ M = Number of rows given in the matrix.
 
 
 ## Pointer
-#### 1. 
+#### 1. What is Pointer?
+- A pointer is defined as a derived data type that can store the address of other C variables or a memory location.
+- We can access and manipulate the data stored in that memory location using pointers.
+- As the pointers in C store the memory addresses, their size is independent of the type of data they are pointing to. This size of pointers in C only depends on the system architecture.
+- A pointer references a location in memory, and obtaining the value stored at that location is known as dereferencing the pointer.
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/9e670658-fdd4-48d0-b0d8-5b7b8cc76e2d)
 
 
+
+#### 2. Why we need Pointer?
+- The ***EIP register*** is a pointer that ‘points’ to the current instruction during a program’s execution by containing its memory address. **The idea of pointers is used in C, also.**
+- ***Since the physical memory cannot actually be moved, the information in it must be copied. It can be very computationally expensive to copy large chunks of memory to be used by different functions or in the different places.***
+- It facililates the dynamic allocation of memory.
+- It provides an alternative way to access a data type, apart from variable names, you can access the content of a variable through pointers.
+- It also makes possible for us to return more than one value from a function.
+- Pointers facilitate ***low-level memory access***, ***dynamic memory allocation***, and various other functionalities in C.
+- Pointers enables us to access content precisely from desired memory locations, but allocating memory through pointers and not releasing it when the job is done may lead to a problem.
+- Using pointers significantly **improves performance for repetitive operations**, like traversing iterable data structures (e.g. strings, lookup tables, control tables and tree structures).
+- In particular, it is often much cheaper in time and space to copy and dereference pointers than it is to copy and access the data to which the pointers point
+  ![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/2fbeefb8-70a0-4df7-88cb-3e35a473ede5)
+
+
+
+#### 3. How Variables are Stored in Memory?
+- C stores all variables in some sort of memory. This may be on the ***stack, the heap, or some other form of memory***.
+- However, unless they are stored in a register, they will have a memory address. In fact, this is the primary reasons for types in C.
+- The variable’s type, at its declaration, tells the compiler how much memory to allocate on the stack for the variable. That is why C has so many types such as char, short, int, long, etc.
+- The exact size of these types depends on the compiler; however, in general, a char is one byte, a short is two bytes, an int is four bytes, and a long is eight bytes. 
+- C does not have a native boolean type is because an **individual bits are not addressable, and the smallest a boolean can be is one byte.**
+- 
+
+
+Pointers are also used to hold the addresses of entry points for called subroutines in procedural programming and for run-time linking to dynamic link libraries (DLLs). In object-oriented programming, pointers to functions are used for binding methods, often using virtual method tables.
+
+
+
+
+
+
+
+
+Many modern programming languages abstract the function of pointers away from the developer’s direct control and instead handles it itself. In lower-level languages, the developer has the ability to directly interact with memory. 
+
+I suspect the reason C does not have a native boolean type is because an individual bits are not addressable, and the smallest a boolean can be is one byte.
 
  
   
