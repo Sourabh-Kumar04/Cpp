@@ -260,7 +260,8 @@ M = Number of rows given in the matrix.
 
 
 
-
+## Pointer
+#### 1. 
 
 
 
