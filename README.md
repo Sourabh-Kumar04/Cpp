@@ -332,7 +332,7 @@ This means take the contents of ptr (which is 0x8130), "locate" that address in 
 
 
 #### 6. Types of Pointer
-####### 1. Integer Pointer
+##### 1. Integer Pointer
 As the name suggests, these are the pointers that point to the integer values.
 
 Syntax
@@ -343,7 +343,7 @@ These pointers are pronounced as **Pointer to Integer.**
 
 Similarly, a pointer can point to any primitive data type. It can point also point to derived data types such as arrays and user-defined data types such as structures.
 
-####### 2. Array Pointer
+##### 2. Array Pointer
 Pointers and Array are closely related to each other. Even the array name is the pointer to its first element. They are also known as **Pointer to Arrays**. We can create a pointer to an array using the given syntax.
 
 Syntax
@@ -352,7 +352,7 @@ char *ptr = &array_name;
 ```
 Pointer to Arrays exhibits some interesting properties which we discussed later in this article.
 
-####### 3. Structure Pointer
+##### 3. Structure Pointer
 The pointer pointing to the structure type is called Structure Pointer or Pointer to Structure. It can be declared in the same way as we declare the other primitive data types.
 
 Syntax
@@ -361,7 +361,7 @@ struct struct_name *ptr;
 ```
 In C, **structure pointers are used** in data structures such as **linked lists, trees,** etc.
 
-####### 4. Function Ponter 
+##### 4. Function Ponter 
 Function pointers point to the functions. They are different from the rest of the pointers in the sense that instead of pointing to the data, they point to the code. Let’s consider a function prototype – int func (int, char), the function pointer for this function will be
 
 Syntax
@@ -371,7 +371,7 @@ int (*ptr)(int, char);
 Note: ***The syntax of the function pointers changes according to the function prototype.***
 
 
-####### 5. Double Pointer
+##### 5. Double Pointer
 In C language, we can define a pointer that stores the memory address of another pointer. Such pointers are called **double-pointers or pointers-to-pointer**. Instead of pointing to a data value, they point to another pointer.
 
 Syntax
@@ -386,7 +386,7 @@ Dereferencing Double Pointer
 Note: ***In C, we can create multi-level pointers with any number of levels such as – ***ptr3, ****ptr4, ******ptr5 and so on.***
 
 
-####### 6. NULL Pointer
+##### 6. NULL Pointer
 The Null Pointers are those pointers that do not point to any memory location. They can be created by assigning a NULL value to the pointer. A pointer of any type can be assigned the NULL value.
 
 Syntax
@@ -398,7 +398,7 @@ pointer_name = NULL
 It is said to be **good practice to assign NULL to the pointers currently not in use**.
 
 
-####### 7. Void Pointer
+##### 7. Void Pointer
 The Void pointers in C are the pointers of type void. It means that they **do not have any associated data type**. They are also called **generic pointers** as they can point to any type and **can be typecasted to any type**.
 
 Syntax
@@ -408,7 +408,7 @@ void * pointer_name;
 One of the main properties of void pointers is that they **cannot be dereferenced**.
 
 
-####### 8. Wild Pointers
+##### 8. Wild Pointers
 The Wild Pointers are pointers that have **not been initialized with something yet**. These types of C-pointers **can cause problems in our programs and can eventually cause them to crash.**
 
 Example
@@ -418,7 +418,7 @@ char *str;
 ```
 
 
-###### 9. Constant Pointers
+##### 9. Constant Pointers
 In constant pointers, the **memory address stored inside the pointer is constant and cannot be modified** once it is defined. It will always point to the same memory address.
 
 Syntax
@@ -427,7 +427,7 @@ data_type * const pointer_name;
 ```
 
 
-####### 10. Pointer to Constant
+##### 10. Pointer to Constant
 The pointers **pointing to a constant value that cannot be modified are called pointers to a constant**. Here we can only access the data pointed by the pointer, but cannot modify it. Although, we can change the address stored in the pointer to constant.
 
 Syntax
@@ -436,7 +436,7 @@ const data_type * pointer_name;
 ```
 
 
-####### Other Types of Pointers in C:
+##### Other Types of Pointers in C:
 There are also the following types of pointers available to use in C apart from those specified above:
 - **Far pointer**: A far pointer is typically 32-bit that can access memory outside the current segment.
 - **Dangling pointer**: A pointer pointing to a memory location that has been deleted (or freed) is called a dangling pointer.
