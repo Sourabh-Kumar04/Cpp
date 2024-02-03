@@ -270,6 +270,7 @@ M = Number of rows given in the matrix.
 
 
 
+
 #### 2. Why we need Pointer?
 - The ***EIP register*** is a pointer that ‘points’ to the current instruction during a program’s execution by containing its memory address. **The idea of pointers is used in C, also.**
 - ***Since the physical memory cannot actually be moved, the information in it must be copied. It can be very computationally expensive to copy large chunks of memory to be used by different functions or in the different places.***
@@ -284,32 +285,321 @@ M = Number of rows given in the matrix.
 
 
 
+
+
 #### 3. How Variables are Stored in Memory?
 - C stores all variables in some sort of memory. This may be on the ***stack, the heap, or some other form of memory***.
 - However, unless they are stored in a register, they will have a memory address. In fact, this is the primary reasons for types in C.
 - The variable’s type, at its declaration, tells the compiler how much memory to allocate on the stack for the variable. That is why C has so many types such as char, short, int, long, etc.
 - The exact size of these types depends on the compiler; however, in general, a char is one byte, a short is two bytes, an int is four bytes, and a long is eight bytes. 
 - C does not have a native boolean type is because an **individual bits are not addressable, and the smallest a boolean can be is one byte.**
-- 
 
-
-Pointers are also used to hold the addresses of entry points for called subroutines in procedural programming and for run-time linking to dynamic link libraries (DLLs). In object-oriented programming, pointers to functions are used for binding methods, often using virtual method tables.
-
-
-
-
-
-
-
-
-Many modern programming languages abstract the function of pointers away from the developer’s direct control and instead handles it itself. In lower-level languages, the developer has the ability to directly interact with memory. 
-
-I suspect the reason C does not have a native boolean type is because an individual bits are not addressable, and the smallest a boolean can be is one byte.
-
- 
   
 
 
+
+#### 4. More of Pointer...
+- Pointers are used to hold the addresses of entry points for called subroutines in procedural programming and for run-time linking to dynamic link libraries (DLLs). In object-oriented programming, pointers to functions are used for binding methods, often using virtual method tables.
+- Because pointers allow both protected and unprotected access to memory addresses, there are risks associated with using them, particularly in the latter case.
+- Primitive pointers are often stored in a format similar to an integer; however, attempting to dereference or "look up" such a pointer whose value is not a valid memory address could cause a program to crash (or contain invalid data).
+- Many modern programming languages abstract the function of pointers away from the developer’s direct control and instead handles it itself. In lower-level languages, the developer has the ability to directly interact with memory.
+- Primitive pointers are often stored in a format similar to an integer; however, attempting to dereference or "look up" such a pointer whose value is not a valid memory address could cause a program to crash (or contain invalid data).
+
+
+
+
+
+#### 5. C Pointers
+The basic syntax to define a pointer is:
+```
+int *ptr;
+```
+This declares ptr as the identifier of an object of the following type:
+- pointer that points to an object of type int
+This is usually stated more succinctly as "ptr is a pointer to int."
+```
+int a = 5;
+int *ptr = NULL;
+
+ptr = &a;
+```
+This assigns the value of the address of a to ptr. For example, if a is stored at memory location of 0x8130 then the value of ptr will be 0x8130 after the assignment. To dereference the pointer, an asterisk is used again:
+
+```
+*ptr = 8;
+```
+This means take the contents of ptr (which is 0x8130), "locate" that address in memory and set its value to 8. If a is later accessed again, its new value will be 8.
+
+
+#### 6. Types of Pointer
+####### 1. Integer Pointer
+As the name suggests, these are the pointers that point to the integer values.
+
+Syntax
+```
+int *ptr;
+```
+These pointers are pronounced as **Pointer to Integer.**
+
+Similarly, a pointer can point to any primitive data type. It can point also point to derived data types such as arrays and user-defined data types such as structures.
+
+####### 2. Array Pointer
+Pointers and Array are closely related to each other. Even the array name is the pointer to its first element. They are also known as **Pointer to Arrays**. We can create a pointer to an array using the given syntax.
+
+Syntax
+```
+char *ptr = &array_name;
+```
+Pointer to Arrays exhibits some interesting properties which we discussed later in this article.
+
+####### 3. Structure Pointer
+The pointer pointing to the structure type is called Structure Pointer or Pointer to Structure. It can be declared in the same way as we declare the other primitive data types.
+
+Syntax
+```
+struct struct_name *ptr;
+```
+In C, **structure pointers are used** in data structures such as **linked lists, trees,** etc.
+
+####### 4. Function Ponter 
+Function pointers point to the functions. They are different from the rest of the pointers in the sense that instead of pointing to the data, they point to the code. Let’s consider a function prototype – int func (int, char), the function pointer for this function will be
+
+Syntax
+```
+int (*ptr)(int, char);
+```
+Note: ***The syntax of the function pointers changes according to the function prototype.***
+
+
+####### 5. Double Pointer
+In C language, we can define a pointer that stores the memory address of another pointer. Such pointers are called **double-pointers or pointers-to-pointer**. Instead of pointing to a data value, they point to another pointer.
+
+Syntax
+```
+datatype ** pointer_name;
+```
+Dereferencing Double Pointer
+```
+*pointer_name; // get the address stored in the inner level pointer
+**pointer_name; // get the value pointed by inner level pointer
+```
+Note: ***In C, we can create multi-level pointers with any number of levels such as – ***ptr3, ****ptr4, ******ptr5 and so on.***
+
+
+####### 6. NULL Pointer
+The Null Pointers are those pointers that do not point to any memory location. They can be created by assigning a NULL value to the pointer. A pointer of any type can be assigned the NULL value.
+
+Syntax
+```
+data_type *pointer_name = NULL;
+        or
+pointer_name = NULL
+```
+It is said to be **good practice to assign NULL to the pointers currently not in use**.
+
+
+####### 7. Void Pointer
+The Void pointers in C are the pointers of type void. It means that they **do not have any associated data type**. They are also called **generic pointers** as they can point to any type and **can be typecasted to any type**.
+
+Syntax
+```
+void * pointer_name;
+```
+One of the main properties of void pointers is that they **cannot be dereferenced**.
+
+
+####### 8. Wild Pointers
+The Wild Pointers are pointers that have **not been initialized with something yet**. These types of C-pointers **can cause problems in our programs and can eventually cause them to crash.**
+
+Example
+```
+int *ptr;
+char *str;
+```
+
+
+###### 9. Constant Pointers
+In constant pointers, the **memory address stored inside the pointer is constant and cannot be modified** once it is defined. It will always point to the same memory address.
+
+Syntax
+```
+data_type * const pointer_name;
+```
+
+
+####### 10. Pointer to Constant
+The pointers **pointing to a constant value that cannot be modified are called pointers to a constant**. Here we can only access the data pointed by the pointer, but cannot modify it. Although, we can change the address stored in the pointer to constant.
+
+Syntax
+```
+const data_type * pointer_name;
+```
+
+
+####### Other Types of Pointers in C:
+There are also the following types of pointers available to use in C apart from those specified above:
+- **Far pointer**: A far pointer is typically 32-bit that can access memory outside the current segment.
+- **Dangling pointer**: A pointer pointing to a memory location that has been deleted (or freed) is called a dangling pointer.
+- **Huge pointer**: A huge pointer is 32-bit long containing segment address and offset address.
+- **Complex pointer**: Pointers with multiple levels of indirection.
+- **Near pointer**: Near pointer is used to store 16-bit addresses means within the current segment on a 16-bit machine.
+- **Normalized pointer**: It is a 32-bit pointer, which has as much of its value in the segment register as possible.
+- **File Pointer**: The pointer to a FILE data type is called a stream pointer or a file pointer.
+
+
+#### 7. Size of Pointers in C
+- The size of the pointers in C is equal for every pointer type.
+- The size of the pointer does not depend on the type it is pointing to.
+- It only depends on the operating system and CPU architecture. The size of pointers in C is
+  - 8 bytes for a 64-bit System
+  - 4 bytes for a 32-bit System
+
+- The reason for the same size is that the pointers store the memory addresses, no matter what type they are. As the space required to store the addresses of the different memory locations is the same, the memory required by one pointer type will be equal to the memory required by other pointer types.
+- We can find the size of pointers using the **sizeof operator**
+```
+// C Program to find the size of different pointers types
+#include <stdio.h>
+
+// dummy structure
+struct str {
+};
+
+// dummy function
+void func(int a, int b){};
+
+int main()
+{
+	// dummy variables definitions
+	int a = 10;
+	char c = 'G';
+	struct str x;
+
+	// pointer definitions of different types
+	int* ptr_int = &a;
+	char* ptr_char = &c;
+	struct str* ptr_str = &x;
+	void (*ptr_func)(int, int) = &func;
+	void* ptr_vn = NULL;
+
+	// printing sizes
+	printf("Size of Integer Pointer \t:\t%d bytes\n",
+		sizeof(ptr_int));
+	printf("Size of Character Pointer\t:\t%d bytes\n",
+		sizeof(ptr_char));
+	printf("Size of Structure Pointer\t:\t%d bytes\n",
+		sizeof(ptr_str));
+	printf("Size of Function Pointer\t:\t%d bytes\n",
+		sizeof(ptr_func));
+	printf("Size of NULL Void Pointer\t:\t%d bytes",
+		sizeof(ptr_vn));
+
+	return 0;
+}
+```
+Output:
+```
+Size of Integer Pointer      :    8 bytes
+Size of Character Pointer    :    8 bytes
+Size of Structure Pointer    :    8 bytes
+Size of Function Pointer    :    8 bytes
+Size of NULL Void Pointer    :    8 bytes
+```
+
+#### 8. C Pointer Arithmetic 
+The Pointer Arithmetic refers to the legal or valid arithmetic operations that can be performed on a pointer. It is slightly different from the ones that we generally use for mathematical calculations as only a limited set of operations can be performed on pointers. These operations include:
+- Increment in a Pointer
+- Decrement in a Pointer
+- Addition of integer to a pointer
+- Subtraction of integer to a pointer
+- Subtracting two pointers of the same type
+- Comparison of pointers of the same type.
+- Assignment of pointers of the same type.
+
+```
+// C program to illustrate Pointer Arithmetic
+
+#include <stdio.h>
+
+int main()
+{
+
+	// Declare an array
+	int v[3] = { 10, 100, 200 };
+
+	// Declare pointer variable
+	int* ptr;
+
+	// Assign the address of v[0] to ptr
+	ptr = v;
+
+	for (int i = 0; i < 3; i++) {
+
+		// print value at address which is stored in ptr
+		printf("Value of *ptr = %d\n", *ptr);
+
+		// print value of ptr
+		printf("Value of ptr = %p\n\n", ptr);
+
+		// Increment pointer ptr by 1
+		ptr++;
+	}
+	return 0;
+}
+```
+Output:
+```
+Value of *ptr = 10
+Value of ptr = 0x7ffe8ba7ec50
+
+Value of *ptr = 100
+Value of ptr = 0x7ffe8ba7ec54
+
+Value of *ptr = 200
+Value of ptr = 0x7ffe8ba7ec58
+```
+
+#### 9. Use of Pointer in C
+1. Pass Arguments by Reference
+1. Accessing Array Elements
+1. Return Multiple Values from Function
+1. Dynamic Memory Allocation
+1. Implementing Data Structures
+1. In System-Level Programming where memory addresses are useful.
+1. In locating the exact value at some memory location.
+1. To avoid compiler confusion for the same variable name.
+1.To use in Control Tables.
+
+
+
+#### 10. Difference between Array & Pointer
+![image](https://github.com/SourabhKumar2633/-C-C-concept/assets/146738264/bf6060dc-5a12-4286-85bf-5df7fdec9d23)
+
+
+
+#### 11. Advantage of Pointers
+- Pointers are used for dynamic memory allocation and deallocation.
+- An Array or a structure can be accessed efficiently with pointers
+- Pointers are useful for accessing memory locations.
+- Pointers are used to form complex data structures such as linked lists, graphs, trees, etc.
+- Pointers reduce the length of the program and its execution time as well.
+
+
+
+#### 12. Disadvantage of Pointers
+- Memory corruption can occur if an incorrect value is provided to pointers.
+- Pointers are a little bit complex to understand.
+- Pointers are majorly responsible for memory leaks in C.
+- Pointers are comparatively slower than variables in C.
+- Uninitialized pointers might cause a segmentation fault.
+
+
+
+
+
+
+
+
+## Array 
 
 
   
