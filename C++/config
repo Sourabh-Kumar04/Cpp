@@ -1,13 +1,1 @@
-# Default account (main account)
-Host github.com
-    HostName github.com
-    User git
-    IdentityFile ~\Desktop\C++\github-Sourabh_Kumar04
 
-
-
-# Other account (SourabhKumar2633)
-Host github-other
-    HostName github.com
-    User git
-    IdentityFile ~\Desktop\C++\id-rsa-other
