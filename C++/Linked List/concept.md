@@ -478,6 +478,7 @@ void deleteNode(Node** head, int dataToDelete) {
 ~~~
 
 ###### Recursive Method to delete a node from linked list
+
 ~~~
 // C++ program to delete a node in
 // singly linked list recursively
@@ -588,6 +589,7 @@ int main()
 
 ##### Iterative Method to delete an element from the linked list:
 ~~~
+
 #include <bits/stdc++.h>
 using namespace std;
  
@@ -665,6 +667,7 @@ int main()
     printList(list);
     return 0;
 }
+
 ~~~
 
 
