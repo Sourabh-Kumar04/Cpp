@@ -585,11 +585,11 @@ int main()
  
     return 0;
 }
-
-
-##### Iterative Method to delete an element from the linked list:
 ~~~
 
+##### Iterative Method to delete an element from the linked list:
+
+~~~
 #include <bits/stdc++.h>
 using namespace std;
  
@@ -638,7 +638,7 @@ void deleteN(Node** head, int position)
 void printList(Node* head)
 {
     while (head) {
-        if (head->next == NULL)
+       if (head->next == NULL)
             cout << "[" << head->number << "] "
                  << "[" << head << "]->"
                  << "(nil)" << endl;
