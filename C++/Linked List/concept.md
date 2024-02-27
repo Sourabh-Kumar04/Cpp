@@ -673,12 +673,350 @@ int main()
 
 
 
+## Operation on Double Linked List
+### Insertion in a Doubly Linked List
+A node can be inserted in a Doubly Linked List in four ways:
+- At the front of the DLL. 
+- In between two nodes
+  - After a given node.
+  - Before a given node.
+- At the end of the DLL
+
+
+#### Add a node at the front in a Doubly Linked List
+The new node is always added before the head of the given Linked List. The task can be performed by using the following 5 steps:
+1. Firstly, allocate a new node (say new_node).
+2. Now put the required data in the new node.
+3. Make the next of new_node point to the current head of the doubly linked list.
+4. Make the previous of the current head point to new_node.
+5. Lastly, point head to new_node.
+
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/c7542a91-1d41-4c31-8def-c3a1b8c2d7df)
+
+~~~
+// Given a reference (pointer to pointer) to the head
+// of a list and an int, inserts a new node
+// on the front of the list.
+void push(struct Node** head_ref, int new_data)
+{
+    // 1. allocate node
+    struct Node* new_node
+        = (struct Node*)malloc(sizeof(struct Node));
+ 
+    // 2. put in the data
+    new_node->data = new_data;
+ 
+    // 3. Make next of new node as head and previous as NULL
+    new_node->next = (*head_ref);
+    new_node->prev = NULL;
+ 
+    // 4. change prev of head node to new node
+    if ((*head_ref) != NULL)
+        (*head_ref)->prev = new_node;
+ 
+    // 5. move the head to point to the new node
+    (*head_ref) = new_node;
+}
+~~~
+
+#### Add a node Between two nodes
+We are given a pointer to a node as prev_node, and the new node is inserted after the given node. This can be done using the following 6 steps:
+1. Firstly create a new node (say new_node).
+2. Now insert the data in the new node.
+3.Point the next of new_node to the next of prev_node.
+4. Point the next of prev_node to new_node.
+5. Point the previous of new_node to prev_node.
+6. Change the pointer of the new node’s previous pointer to new_node.
+
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/cc4c1f75-f7e7-4e90-a4ba-a7e49abff646)
+
+~~~
+// Given a node as prev_node, insert a new node 
+// after the given node
+void insertAfter(struct Node* prev_node, int new_data)
+{
+    // Check if the given prev_node is NULL
+    if (prev_node == NULL) {
+        printf("the given previous node cannot be NULL");
+        return;
+    }
+ 
+    // 1. allocate new node
+    struct Node* new_node
+        = (struct Node*)malloc(sizeof(struct Node));
+ 
+    // 2. put in the data
+    new_node->data = new_data;
+ 
+    // 3. Make next of new node as next of prev_node
+    new_node->next = prev_node->next;
+ 
+    // 4. Make the next of prev_node as new_node
+    prev_node->next = new_node;
+ 
+    // 5. Make prev_node as previous of new_node
+    new_node->prev = prev_node;
+ 
+    // 6. Change previous of new_node's next node
+    if (new_node->next != NULL)
+        new_node->next->prev = new_node;
+}
+~~~
+
+
+#### Add a node before a given node in a Double Linked List
+This can be done using the following 6 steps. 
+1. Allocate memory for the new node, let it be called new_node.
+2. Put the data in new_node.
+3. Set the previous pointer of this new_node as the previous node of the next_node.
+4. Set the previous pointer of the next_node as the new_node.
+5. Set the next pointer of this new_node as the next_node.
+6. Now set the previous pointer of new_node.
+   - If the previous node of the new_node is not NULL, then set the next pointer of this previous node as new_node.
+   - Else, if the prev of new_node is NULL, it will be the new head node.
+
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/cb84a052-0fb6-41f2-85a9-b27a75cc82d9)
+
+~~~
+
+// Given a node as prev_node, insert a new node 
+// after the given node
+void insertBefore(struct Node* next_node, int new_data)
+{
+    // Check if the given next_node is NULL
+    if (next_node == NULL) {
+        printf("the given next node cannot be NULL");
+        return;
+    }
+ 
+    // 1. Allocate new node
+    struct Node* new_node
+        = (struct Node*)malloc(sizeof(struct Node));
+ 
+    // 2. Put in the data
+    new_node->data = new_data;
+ 
+    // 3. Make previous of new node as previous of next_node
+    new_node->prev = next_node->prev;
+ 
+    // 4. Make the previous of next_node as new_node
+    next_node->prev = new_node;
+ 
+    // 5. Make next_node as next of new_node
+    new_node->next = next_node;
+ 
+    // 6. Change next of new_node's previous node
+    if (new_node->prev != NULL)
+        new_node->prev->next = new_node;
+    else
+        head = new_node;
+}
+
+~~~
+
+
+#### Add a node at the end in a Doubly Linked List
+The new node is always added after the last node of the given Linked List. This can be done using the following 7 steps:
+1. Create a new node (say new_node).
+2. Put the value in the new node.
+3. Make the next pointer of new_node as null.
+4. If the list is empty, make new_node as the head.
+5. Otherwise, travel to the end of the linked list.
+6. Now make the next pointer of last node point to new_node.
+7. Change the previous pointer of new_node to the last node of the list.
+
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/0fa75f3e-3cf8-4093-ac10-9fef3caccb66)
+
+~~~
+// Given a reference (pointer to pointer) to the head
+// of a DLL and an int, appends a new node at the end
+void append(struct Node** head_ref, int new_data)
+{
+    // 1. allocate node
+    struct Node* new_node
+        = (struct Node*)malloc(sizeof(struct Node));
+ 
+    struct Node* last = *head_ref; /* used in step 5*/
+ 
+    // 2. put in the data
+    new_node->data = new_data;
+ 
+    // 3. This new node is going to be the last node, so
+    // make next of it as NULL
+    new_node->next = NULL;
+ 
+    // 4. If the Linked List is empty, then make the new
+    // node as head
+    if (*head_ref == NULL) {
+        new_node->prev = NULL;
+        *head_ref = new_node;
+        return;
+    }
+ 
+    // 5. Else traverse till the last node
+    while (last->next != NULL)
+        last = last->next;
+ 
+    // 6. Change the next of last node
+    last->next = new_node;
+ 
+    // 7. Make last node as previous of new node
+    new_node->prev = last;
+ 
+    return;
+}
+~~~
+
+### Deletion On  Double Linked List
+
+### Delete a Doubly Linked node at a given Position
+**Approach:** Following are the steps:
+- Get the pointer to the node at position n by traversing the doubly linked list up to the nth node from the beginning.
+- Delete the node using the pointer obtained in Step 1.
+
+~~~
+/* C++ implementation to delete a doubly Linked List node 
+   at the given position */
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+/* a node of the doubly linked list */
+struct Node {
+    int data;
+    struct Node* next;
+    struct Node* prev;
+};
+ 
+/* Function to delete a node in a Doubly Linked List.
+   head_ref --> pointer to head node pointer.
+   del  -->  pointer to node to be deleted. */
+void deleteNode(struct Node** head_ref, struct Node* del)
+{
+    /* base case */
+    if (*head_ref == NULL || del == NULL)
+        return;
+ 
+    /* If node to be deleted is head node */
+    if (*head_ref == del)
+        *head_ref = del->next;
+ 
+    /* Change next only if node to be deleted is NOT 
+       the last node */
+    if (del->next != NULL)
+        del->next->prev = del->prev;
+ 
+    /* Change prev only if node to be deleted is NOT 
+       the first node */
+    if (del->prev != NULL)
+        del->prev->next = del->next;
+ 
+    /* Finally, free the memory occupied by del*/
+    free(del);
+}
+ 
+/* Function to delete the node at the given position
+   in the doubly linked list */
+void deleteNodeAtGivenPos(struct Node** head_ref, int n)
+{
+    /* if list in NULL or invalid position is given */
+    if (*head_ref == NULL || n <= 0)
+        return;
+ 
+    struct Node* current = *head_ref;
+    int i;
+ 
+    /* traverse up to the node at position 'n' from
+       the beginning */
+    for (int i = 1; current != NULL && i < n; i++)
+        current = current->next;
+ 
+    /* if 'n' is greater than the number of nodes
+       in the doubly linked list */
+    if (current == NULL)
+        return;
+ 
+    /* delete the node pointed to by 'current' */
+    deleteNode(head_ref, current);
+}
+ 
+/* Function to insert a node at the beginning 
+   of the Doubly Linked List */
+void push(struct Node** head_ref, int new_data)
+{
+    /* allocate node */
+    struct Node* new_node = 
+         (struct Node*)malloc(sizeof(struct Node));
+ 
+    /* put in the data  */
+    new_node->data = new_data;
+ 
+    /* since we are adding at the beginning,
+    prev is always NULL */
+    new_node->prev = NULL;
+ 
+    /* link the old list of the new node */
+    new_node->next = (*head_ref);
+ 
+    /* change prev of head node to new node */
+    if ((*head_ref) != NULL)
+        (*head_ref)->prev = new_node;
+ 
+    /* move the head to point to the new node */
+    (*head_ref) = new_node;
+}
+ 
+/* Function to print nodes in a given doubly
+   linked list */
+void printList(struct Node* head)
+{
+    while (head != NULL) {
+        cout << head->data << " ";
+        head = head->next;
+    }
+}
+ 
+/* Driver program to test above functions*/
+int main()
+{
+    /* Start with the empty list */
+    struct Node* head = NULL;
+ 
+    /* Create the doubly linked list 10<->8<->4<->2<->5 */
+    push(&head, 5);
+    push(&head, 2);
+    push(&head, 4);
+    push(&head, 8);
+    push(&head, 10);
+ 
+    cout << "Doubly linked list before deletion:n";
+    printList(head);
+ 
+    int n = 2;
+ 
+    /* delete node at the given position 'n' */
+    deleteNodeAtGivenPos(&head, n);
+ 
+    cout << "\nDoubly linked list after deletion:n";
+    printList(head);
+ 
+    return 0;
+}
+~~~
+
+Output:
+~~~
+Doubly linked list before deletion:n10 8 4 2 5 
+Doubly linked list after deletion:n10 4 2 5 
+~~~
+   
+For further refer to: https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article
 
 
 
+## Operation on Circular Linked List
 
-
-
+continue from here:  '' https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article  ''
 
 
 
