@@ -683,7 +683,7 @@ A node can be inserted in a Doubly Linked List in four ways:
 - At the end of the DLL
 
 
-#### Add a node at the front in a Doubly Linked List
+#### **Add a node at the front in a Doubly Linked List**
 The new node is always added before the head of the given Linked List. The task can be performed by using the following 5 steps:
 1. Firstly, allocate a new node (say new_node).
 2. Now put the required data in the new node.
@@ -719,7 +719,7 @@ void push(struct Node** head_ref, int new_data)
 }
 ~~~
 
-#### Add a node Between two nodes
+#### **Add a node Between two nodes**
 We are given a pointer to a node as prev_node, and the new node is inserted after the given node. This can be done using the following 6 steps:
 1. Firstly create a new node (say new_node).
 2. Now insert the data in the new node.
@@ -764,7 +764,7 @@ void insertAfter(struct Node* prev_node, int new_data)
 ~~~
 
 
-#### Add a node before a given node in a Double Linked List
+#### **Add a node before a given node in a Double Linked List**
 This can be done using the following 6 steps. 
 1. Allocate memory for the new node, let it be called new_node.
 2. Put the data in new_node.
@@ -869,7 +869,7 @@ void append(struct Node** head_ref, int new_data)
 
 ### Deletion On  Double Linked List
 
-### Delete a Doubly Linked node at a given Position
+#### 1. **Delete a Doubly Linked node at a given Position**
 **Approach:** Following are the steps:
 - Get the pointer to the node at position n by traversing the doubly linked list up to the nth node from the beginning.
 - Delete the node using the pointer obtained in Step 1.
@@ -1010,21 +1010,301 @@ Doubly linked list before deletion:n10 8 4 2 5
 Doubly linked list after deletion:n10 4 2 5 
 ~~~
    
-For further refer to: https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article
 
 
+## Operation on Circular Linke List
+### Insertion in Circular Linked List
+#### 1. Insertion in a Empty List
+- Initially, when the list is empty, the last pointer will be NULL.
+- After inserting node T, 
+~~~
+// C++ program for the above operation 
+struct Node* addToEmpty(struct Node* last, int data) 
+{ 
+	// This function is only for empty list 
+	if (last != NULL) 
+		return last; 
 
-## Operation on Circular Linked List
+	// Creating a node dynamically. 
+	struct Node* temp 
+		= (struct Node*)malloc(sizeof(struct Node)); 
 
-continue from here:  '' https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article  ''
+	// Assigning the data. 
+	temp->data = data; 
+	last = temp; 
+	// Note : list was empty. We link single node 
+	// to itself. 
+	temp->next = last; 
+
+	return last; 
+}
+~~~
 
 
+#### 3. Insertion at the beginning of the list
+To insert a node at the beginning of the list, follow these steps: 
+- Create a node, say T
+- Make T -> next = last -> next
+- last -> next = T
+~~~
+// C++ program for the above operation 
 
+struct Node* addBegin(struct Node* last, int data) 
+{ 
+	if (last == NULL) 
+		return addToEmpty(last, data); 
 
+	// Creating a node dynamically. 
+	struct Node* temp 
+		= (struct Node*)malloc(sizeof(struct Node)); 
 
+	// Assigning the data. 
+	temp->data = data; 
 
+	// Adjusting the links. 
+	temp->next = last->next; 
+	last->next = temp; 
 
+	return last; 
+}
+~~~
 
+#### 4. Inseertion at the end of the list
+To insert a node at the end of the list, follow these steps: 
+- Create a node, say T
+- Make T -> next = last -> next
+- last -> next = T
+- last = T
+~~~
+// C++ program for the above operation 
+
+struct Node* addEnd(struct Node* last, int data) 
+{ 
+	if (last == NULL) 
+		return addToEmpty(last, data); 
+
+	// Creating a node dynamically. 
+	struct Node* temp 
+		= (struct Node*)malloc(sizeof(struct Node)); 
+
+	// Assigning the data. 
+	temp->data = data; 
+
+	// Adjusting the links. 
+	temp->next = last->next; 
+	last->next = temp; 
+	last = temp; 
+
+	return last; 
+}
+~~~
+
+#### 5. Insertion in between the nodes
+To insert a node in between the two nodes, follow these steps: 
+- Create a node, say T. 
+- Search for the node after which T needs to be inserted, say that node is P. 
+- Make T -> next = P -> next; 
+- P -> next = T.
+~~~
+// C++ program for the above operation 
+  
+struct Node* addEnd(struct Node* last, int data) 
+{ 
+    if (last == NULL) 
+        return addToEmpty(last, data); 
+  
+    // Creating a node dynamically. 
+    struct Node* temp 
+        = (struct Node*)malloc(sizeof(struct Node)); 
+  
+    // Assigning the data. 
+    temp->data = data; 
+  
+    // Adjusting the links. 
+    temp->next = last->next; 
+    last->next = temp; 
+    last = temp; 
+  
+    return last; 
+}
+~~~
+
+#### 6. Insertion in between the nodes
+To insert in between the two nodes, follow these steps:
+- Creste a node
+- Search for the node after which T needs to be inserted, say that node id P.
+- MAke T -> next = P -> next;
+- P -> next = T.
+~~~
+// C++ program for the above operation 
+  
+struct Node* addAfter(struct Node* last, int data, int item) 
+{ 
+    if (last == NULL) 
+        return NULL; 
+  
+    struct Node *temp, *p; 
+    p = last->next; 
+  
+    // Searching the item. 
+    do { 
+        if (p->data == item) { 
+            // Creating a node dynamically. 
+            temp 
+                = (struct Node*)malloc(sizeof(struct Node)); 
+  
+            // Assigning the data. 
+            temp->data = data; 
+  
+            // Adjusting the links. 
+            temp->next = p->next; 
+  
+            // Adding newly allocated node after p. 
+            p->next = temp; 
+  
+            // Checking for the last node. 
+            if (p == last) 
+                last = temp; 
+  
+            return last; 
+        } 
+        p = p->next; 
+    } while (p != last->next); 
+  
+    cout << item << " not present in the list." << endl; 
+    return last; 
+}
+~~~
+
+### Complete Program of Insertion in Circular Linked List
+~~~
+// C++ program for the above methods 
+  
+#include <bits/stdc++.h> 
+using namespace std; 
+  
+struct Node { 
+    int data; 
+    struct Node* next; 
+}; 
+  
+struct Node* addToEmpty(struct Node* last, int data) 
+{ 
+    // This function is only for empty list 
+    if (last != NULL) 
+        return last; 
+  
+    // Creating a node dynamically. 
+    struct Node* temp 
+        = (struct Node*)malloc(sizeof(struct Node)); 
+  
+    // Assigning the data. 
+    temp->data = data; 
+    last = temp; 
+  
+    // Creating the link. 
+    last->next = last; 
+    return last; 
+} 
+  
+struct Node* addBegin(struct Node* last, int data) 
+{ 
+    if (last == NULL) 
+        return addToEmpty(last, data); 
+  
+    struct Node* temp 
+        = (struct Node*)malloc(sizeof(struct Node)); 
+    temp->data = data; 
+    temp->next = last->next; 
+    last->next = temp; 
+    return last; 
+} 
+  
+struct Node* addEnd(struct Node* last, int data) 
+{ 
+    if (last == NULL) 
+        return addToEmpty(last, data); 
+  
+    struct Node* temp 
+        = (struct Node*)malloc(sizeof(struct Node)); 
+  
+    temp->data = data; 
+    temp->next = last->next; 
+    last->next = temp; 
+    last = temp; 
+  
+    return last; 
+} 
+  
+struct Node* addAfter(struct Node* last, int data, int item) 
+{ 
+    if (last == NULL) 
+        return NULL; 
+  
+    struct Node *temp, *p; 
+    p = last->next; 
+  
+    do { 
+        if (p->data == item) { 
+            temp 
+                = (struct Node*)malloc(sizeof(struct Node)); 
+            temp->data = data; 
+            temp->next = p->next; 
+            p->next = temp; 
+            if (p == last) 
+                last = temp; 
+            return last; 
+        } 
+        p = p->next; 
+    } while (p != last->next); 
+  
+    cout << item << " not present in the list." << endl; 
+    return last; 
+} 
+  
+void traverse(struct Node* last) 
+{ 
+    struct Node* p; 
+  
+    // If list is empty, return. 
+    if (last == NULL) { 
+        cout << "List is empty." << endl; 
+        return; 
+    } 
+  
+    // Pointing to first Node of the list. 
+    p = last->next; 
+  
+    // Traversing the list. 
+    do { 
+        cout << p->data << " "; 
+        p = p->next; 
+    } while (p != last->next); 
+} 
+  
+// Driver code 
+int main() 
+{ 
+    struct Node* last = NULL; 
+    last = addToEmpty(last, 6); 
+    last = addBegin(last, 4); 
+    last = addBegin(last, 2); 
+    last = addEnd(last, 8); 
+    last = addEnd(last, 12); 
+    last = addAfter(last, 10, 8); 
+  
+    // Function call 
+    traverse(last); 
+    return 0; 
+}
+~~~
+
+Output:
+~~~
+2 4 6 8 10 12 
+~~~
+
+For Other Practice Program Refer to: '' https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article ''
 
 
 
