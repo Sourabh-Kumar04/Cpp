@@ -82,16 +82,6 @@ In a circular linked list, the last node points back to the head node, creating 
 - Auxiliary Complexity: 0(n)
 
 
-### Advantage  of Linked List
-- **Dynamic Size:** Linked lists can grow or shrink dynamically, as memory allocation is done at runtime.
-- **Insertion and Deletion:** Adding or removing elements from a linked list is efficient, especially for large lists.
-- **Flexibility:** Linked lists can be easily reorganized and modified without requiring a contiguous block of memory.
-
-### Disadvantages of Linked Lists
-- **Random Access:** Unlike arrays, linked lists do not allow direct access to elements by index. - - -Traversal is required to reach a specific node.
-- **Extra Memory:** Linked lists require additional memory for storing the pointers, compared to arrays.
-
-
 ## Operation n Single Linked List
 ### Insertion
 #### 1. **Insert a node at the start/beginning/front of a Linked List**
@@ -1723,6 +1713,669 @@ After Deleting first node: 11 22 33 55 66
 Initial List: 11 22 33 55 66 
 After Deleting last node: 11 22 33 55 
 ~~~
+
+
+
+### Advantage  of Linked List
+- **Dynamic Size:** Linked lists can grow or shrink dynamically, as memory allocation is done at runtime.
+- **Memory efficient:** Memory consumption of a linked list is efficient as its size can grow or shrink dynamically according to our requirements, which means effective memory utilization hence, no memory wastage.
+- **Insertion and Deletion:** Adding or removing elements from a linked list is efficient, especially for large lists.
+- **Flexibility:** Linked lists can be easily reorganized and modified without requiring a contiguous block of memory.
+- **Implementation:** For the implementation of stacks and queues and for the representation of trees and graphs.
+- The linked list can be expanded in constant time.
+
+
+
+### Disadvantages of Linked Lists
+- **Random Access:** Unlike arrays, linked lists do not allow direct access to elements by index.Traversal is required to reach a specific node.
+- **Extra Memory:** Linked lists require additional memory for storing the pointers, compared to arrays.
+- **Memory usage:** The use of pointers is more in linked lists hence, complex and requires more memory.
+- **Accessing a node:** Random access is not possible due to dynamic memory allocation.
+Search operation costly: Searching for an element is costly and requires O(n) time complexity.
+- **Traversing in reverse order:** Traversing is more time-consuming and reverse traversing is not possible in singly linked lists.
+
+
+### Application of Linked  List 
+- Linear data structures such as stack, queue, and non-linear data structures such as hash maps, and graphs can be implemented using linked lists.
+- **Dynamic memory allocation:** We use a linked list of free blocks.
+- **Implementation of graphs:** Adjacency list representation of graphs is the most popular in that it uses linked lists to store adjacent vertices.
+- It is used for representing sparse matrices.
+- It is used for finding paths in networks.
+- In operating systems, they can be used in Memory management, process scheduling and file system.
+- In web browsers and editors, doubly linked lists can be used to build a forwards and backward navigation button.
+- A circular doubly linked list can also be used for implementing data structures like Fibonacci heaps.
+- Implementing algorithms such as the LRU cache, which uses a linked list to keep track of the most recently used items in a cache.
+
+
+### Applicatino of Linked List in real World
+- The list of songs in the music player is linked to the previous and next songs. 
+- In a web browser, previous and next web page URLs are linked through the previous and next buttons.
+- In the image viewer, the previous and next images are linked with the help of the previous and next buttons.
+- Switching between two applications is carried out by using “alt+tab” in windows and “cmd+tab” in mac book. It requires the functionality of a circular linked list.
+- In mobile phones, we save the contacts of people. The newly entered contact details will be placed at the correct alphabetical order.
+This can be achieved by a linked list to set contact at the correct alphabetical position.
+- The modifications that we made in the documents are actually created as nodes in doubly linked list. We can simply use the undo option by pressing Ctrl+Z to modify the contents. It is done by the functionality of a linked list.
+
+
+
+#### Difference Betweeen a Singly and Doubly Linked List
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/56c30ebd-9560-436d-8c13-753eba2af7f1)
+
+#### Why insertion/deletion are faster in a linked list?
+If any element is inserted/ deleted from the array, all the other elements after it will be shifted in memory this takes a lot of time whereas manipulation in Linked List is faster because we just need to manipulate the addresses of nodes, so no bit shifting is required in memory, and it will not take that much of time.
+
+
+## Searching in a Linked List
+Refer to this for Understanding Searching: 
+https://www.geeksforgeeks.org/search-an-element-in-a-linked-list-iterative-and-recursive/?ref=next_article
+
+## Length of a Linked List
+### Iterative Approach
+Follow the given steps to solve the problem:
+- Initialize count as 0 
+- Initialize a node pointer, current = head.
+- Do following while current is not NULL
+- current = current -> next
+- Increment count by 1.
+- Return count 
+
+
+Implementation:
+~~~
+// Iterative C++ program to find length
+// or count of nodes in a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+class Node {
+public:
+	int data;
+	Node* next;
+};
+
+/* Given a reference (pointer to pointer) to the head
+of a list and an int, push a new node on the front
+of the list. */
+void push(Node** head_ref, int new_data)
+{
+	/* allocate node */
+	Node* new_node = new Node();
+
+	/* put in the data */
+	new_node->data = new_data;
+
+	/* link the old list of the new node */
+	new_node->next = (*head_ref);
+
+	/* move the head to point to the new node */
+	(*head_ref) = new_node;
+}
+
+/* Counts no. of nodes in linked list */
+int getCount(Node* head)
+{
+	int count = 0; // Initialize count
+	Node* current = head; // Initialize current
+	while (current != NULL) {
+		count++;
+		current = current->next;
+	}
+	return count;
+}
+
+/* Driver code*/
+int main()
+{
+	/* Start with the empty list */
+	Node* head = NULL;
+
+	/* Use push() to construct below list
+	1->2->1->3->1 */
+	push(&head, 1);
+	push(&head, 3);
+	push(&head, 1);
+	push(&head, 2);
+	push(&head, 1);
+
+	// Function call
+	cout << "count of nodes is " << getCount(head);
+	return 0;
+}
+
+// This is code is contributed by rathbhupendra
+~~~
+
+
+### Recursive appraoch
+Follow the given steps to solve the problem:
+- If the head is NULL, return 0.
+- Otherwise, return 1 + getCount(head->next) 
+
+Implementation:
+~~~
+// Recursive C++ program to find length
+// or count of nodes in a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+class Node {
+public:
+	int data;
+	Node* next;
+};
+
+/* Given a reference (pointer to pointer) to the head
+of a list and an int, push a new node on the front
+of the list. */
+void push(Node** head_ref, int new_data)
+{
+	/* allocate node */
+	Node* new_node = new Node();
+
+	/* put in the data */
+	new_node->data = new_data;
+
+	/* link the old list of the new node */
+	new_node->next = (*head_ref);
+
+	/* move the head to point to the new node */
+	(*head_ref) = new_node;
+}
+
+/* Recursively count number of nodes in linked list */
+int getCount(Node* head)
+{
+	// Base Case
+	if (head == NULL) {
+		return 0;
+	}
+	// Count this node plus the rest of the list
+	else {
+		return 1 + getCount(head->next);
+	}
+}
+
+/* Driver program to test count function*/
+int main()
+{
+	/* Start with the empty list */
+	Node* head = NULL;
+
+	/* Use push() to construct below list
+	1->2->1->3->1 */
+	push(&head, 1);
+	push(&head, 3);
+	push(&head, 1);
+	push(&head, 2);
+	push(&head, 1);
+
+	/* Check the count function */
+	cout << "Count of nodes is " << getCount(head);
+	return 0;
+}
+
+// This is code is contributed by rajsanghavi9
+~~~
+
+## Reverse of a Linked List
+Follow the steps below to solve the problem:
+- Initialize three pointers prev as NULL, curr as head, and next as NULL.
+- Iterate through the linked list. In a loop, do the following:
+  - Before changing the next of curr, store the next node
+  - next = curr -> next
+- Now update the next pointer of curr to the prev
+  - curr -> next = prev 
+- Update prev as curr and curr as next
+  - prev = curr
+  - curr = next
+
+Implenetation:
+~~~
+// Iterative C++ program to reverse a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+struct Node {
+	int data;
+	struct Node* next;
+	Node(int data)
+	{
+		this->data = data;
+		next = NULL;
+	}
+};
+
+struct LinkedList {
+	Node* head;
+	LinkedList() { head = NULL; }
+
+	/* Function to reverse the linked list */
+	void reverse()
+	{
+		// Initialize current, previous and next pointers
+		Node* current = head;
+		Node *prev = NULL, *next = NULL;
+
+		while (current != NULL) {
+			// Store next
+			next = current->next;
+			// Reverse current node's pointer
+			current->next = prev;
+			// Move pointers one position ahead.
+			prev = current;
+			current = next;
+		}
+		head = prev;
+	}
+
+	/* Function to print linked list */
+	void print()
+	{
+		struct Node* temp = head;
+		while (temp != NULL) {
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+	}
+
+	void push(int data)
+	{
+		Node* temp = new Node(data);
+		temp->next = head;
+		head = temp;
+	}
+};
+
+/* Driver code*/
+int main()
+{
+	/* Start with the empty list */
+	LinkedList ll;
+	ll.push(20);
+	ll.push(4);
+	ll.push(15);
+	ll.push(85);
+
+	cout << "Given linked list\n";
+	ll.print();
+
+	ll.reverse();
+
+	cout << "\nReversed linked list \n";
+	ll.print();
+	return 0;
+}
+
+~~~
+
+Output:
+~~~
+Given linked list
+85 15 4 20 
+Reversed linked list 
+20 4 15 85 
+~~~
+
+### Reverse of Linked list using Recursion
+Follow the steps below to solve the problem:
+- Divide the list in two parts – first node and rest of the linked list.
+- Call reverse for the rest of the linked list.
+- Link the rest linked list to first.
+- Fix head pointer to NULL
+
+~~~
+// Recursive C++ program to reverse
+// a linked list
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+struct Node {
+	int data;
+	struct Node* next;
+	Node(int data)
+	{
+		this->data = data;
+		next = NULL;
+	}
+};
+
+struct LinkedList {
+	Node* head;
+	LinkedList() { head = NULL; }
+
+	Node* reverse(Node* head)
+	{
+		if (head == NULL || head->next == NULL)
+			return head;
+
+		/* reverse the rest list and put
+		the first element at the end */
+		Node* rest = reverse(head->next);
+		head->next->next = head;
+
+		/* tricky step -- see the diagram */
+		head->next = NULL;
+
+		/* fix the head pointer */
+		return rest;
+	}
+
+	/* Function to print linked list */
+	void print()
+	{
+		struct Node* temp = head;
+		while (temp != NULL) {
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+	}
+
+	void push(int data)
+	{
+		Node* temp = new Node(data);
+		temp->next = head;
+		head = temp;
+	}
+};
+
+/* Driver program to test above function*/
+int main()
+{
+	/* Start with the empty list */
+	LinkedList ll;
+	ll.push(20);
+	ll.push(4);
+	ll.push(15);
+	ll.push(85);
+
+	cout << "Given linked list\n";
+	ll.print();
+
+	ll.head = ll.reverse(ll.head);
+
+	cout << "\nReversed linked list \n";
+	ll.print();
+	return 0;
+}
+~~~
+
+Output:
+~~~
+Given linked list
+85 15 4 20 
+Reversed linked list 
+20 4 15 85
+~~~
+
+
+## How to get Nth node in a Linked List?
+**Algoritnm**
+1. Initialize count = 0
+2. Loop through the link list
+     a. if the count is equal to the passed index then return the current
+         node
+     b. Increment count
+     c. change current to point to next of the current.
+
+Implementation:
+~~~
+// C++ program to find n'th 
+// node in linked list 
+#include <assert.h> 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Link list node 
+class Node { 
+public: 
+	int data; 
+	Node* next; 
+}; 
+
+/* Given a reference (pointer to 
+pointer) to the head of a list 
+and an int, push a new node on 
+the front of the list. */
+void push(Node** head_ref, int new_data) 
+{ 
+
+	// allocate node 
+	Node* new_node = new Node(); 
+
+	// put in the data 
+	new_node->data = new_data; 
+
+	// link the old list 
+	// of the new node 
+	new_node->next = (*head_ref); 
+
+	// move the head to point 
+	// to the new node 
+	(*head_ref) = new_node; 
+} 
+
+// Takes head pointer of 
+// the linked list and index 
+// as arguments and return 
+// data at index 
+int GetNth(Node* head, int index) 
+{ 
+
+	Node* current = head; 
+
+	// the index of the 
+	// node we're currently 
+	// looking at 
+	int count = 0; 
+	while (current != NULL) { 
+		if (count == index) 
+			return (current->data); 
+		count++; 
+		current = current->next; 
+	} 
+
+	/* if we get to this line, 
+	the caller was asking 
+	for a non-existent element 
+	so we assert fail */
+	assert(0); 
+} 
+
+// Driver Code 
+int main() 
+{ 
+
+	// Start with the 
+	// empty list 
+	Node* head = NULL; 
+
+	// Use push() to construct 
+	// below list 
+	// 1->12->1->4->1 
+	push(&head, 1); 
+	push(&head, 4); 
+	push(&head, 1); 
+	push(&head, 12); 
+	push(&head, 1); 
+
+	// Check the count 
+	// function 
+	cout << "Element at index 3 is " << GetNth(head, 3); 
+	return 0; 
+} 
+
+// This code is contributed by rathbhupendra
+~~~
+
+### Getting Nth node in a Linked List Using Stack
+**Algorihtm:**
+getnth(node,n)
+1. Initialize count = 0
+2. if count==n
+     return node->data
+3. else
+    return getnth(node->next,n-1)
+
+**Implemntation**
+~~~
+// C++ program to find n'th node in linked list 
+// using recursion 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+/* Linked list node */
+struct Node { 
+	int data; 
+	struct Node* next; 
+}; 
+
+/* Given a reference (pointer to pointer) to 
+	the head of a list and an int, push a 
+	new node on the front of the list. */
+void push(struct Node** head_ref, int new_data) 
+{ 
+	/* allocate node */
+	struct Node* new_node 
+		= (struct Node*)malloc(sizeof(struct Node)); 
+
+	/* put in the data */
+	new_node->data = new_data; 
+
+	/* link the old list of the new node */
+	new_node->next = (*head_ref); 
+
+	/* move the head to point to the new node */
+	(*head_ref) = new_node; 
+} 
+
+/* Takes head pointer of the linked list and index 
+	as arguments and return data at index. (Don't use 
+another variable)*/
+int GetNth(struct Node* head, int n) 
+{ 
+	// if length of the list is less 
+	// than the given index, return -1 
+	if (head == NULL) 
+		return -1; 
+
+	// if n equal to 0 return node->data 
+	if (n == 0) 
+		return head->data; 
+
+	// increase head to next pointer 
+	// n - 1: decrease the number of recursions until n = 0 
+	return GetNth(head->next, n - 1); 
+} 
+
+/* Driver code*/
+int main() 
+{ 
+	/* Start with the empty list */
+	struct Node* head = NULL; 
+
+	/* Use push() to construct below list 
+	1->12->1->4->1 */
+	push(&head, 1); 
+	push(&head, 4); 
+	push(&head, 1); 
+	push(&head, 12); 
+	push(&head, 1); 
+
+	/* Check the count function */
+	printf("Element at index 3 is %d", GetNth(head, 3)); 
+	getchar(); 
+} 
+
+// This code is contributed by Aditya Kumar (adityakumar129)
+
+~~~
+
+
+## Program for Nth node from the end of a Linked List
+**Approach**
+- Calculate the length of the Linked List. Let the length be len. 
+- Print the (len – n + 1)th node from the beginning of the Linked List.
+
+**Implementation**
+~~~
+// C++ program to find N'th node from end
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Link list node */
+struct Node {
+	int data;
+	struct Node* next;
+};
+
+/* Function to get the Nth node from
+the last of a linked list*/
+void printNthFromLast(struct Node* head, int N)
+{
+	int len = 0, i;
+	struct Node* temp = head;
+
+	// Count the number of nodes in Linked List
+	while (temp != NULL) {
+		temp = temp->next;
+		len++;
+	}
+
+	// Check if value of N is not
+	// more than length of the linked list
+	if (len < N)
+		return;
+
+	temp = head;
+
+	// Get the (len-N+1)th node from the beginning
+	for (i = 1; i < len - N + 1; i++)
+		temp = temp->next;
+
+	cout << temp->data;
+
+	return;
+}
+
+void push(struct Node** head_ref, int new_data)
+{
+	/* allocate node */
+	struct Node* new_node = new Node();
+
+	/* put in the data */
+	new_node->data = new_data;
+
+	/* link the old list of the new node */
+	new_node->next = (*head_ref);
+
+	/* move the head to point to the new node */
+	(*head_ref) = new_node;
+}
+
+// Driver's Code
+int main()
+{
+	/* Start with the empty list */
+	struct Node* head = NULL;
+
+	// create linked 35->15->4->20
+	push(&head, 20);
+	push(&head, 4);
+	push(&head, 15);
+	push(&head, 35);
+	
+	// Function call
+	printNthFromLast(head, 4);
+	return 0;
+}
+~~~
+
+For further Program Refer to Code.cpp 
+
 
 
 
