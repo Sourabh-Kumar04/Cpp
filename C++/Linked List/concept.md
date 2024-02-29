@@ -1307,7 +1307,422 @@ Output:
 For Other Practice Program Refer to: '' https://www.geeksforgeeks.org/introduction-to-linked-list-data-structure-and-algorithm-tutorial/?ref=next_article ''
 
 
+### Deletion at differentposition in a Circular Linked List
+#### 1. Deletion first node from Singly Circular Linked list
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/4c06db02-2144-421e-8664-9469a2a71d4e)
 
+Approach: 
+- Take two pointers current and previous and traverse the list.
+- Keep the pointer current fixed pointing to the first node and move previous until it reaches the last node.
+- Once, the pointer previous reaches the last node, do the following:
+  - previous->next = current-> next
+  - head = previous -> next;
+~~~
+// Function to delete First node of
+// Circular Linked List
+void DeleteFirst(struct Node** head)
+{
+    struct Node *previous = *head, *firstNode = *head;
+ 
+    // check if list doesn't have any node
+    // if not then return
+    if (*head == NULL) {
+        printf("\nList is empty\n");
+        return;
+    }
+ 
+    // check if list have single node
+    // if yes then delete it and return
+    if (previous->next == previous) {
+        *head = NULL;
+        return;
+    }
+ 
+    // traverse second node to first
+    while (previous->next != *head) {
+ 
+        previous = previous->next;
+    }
+ 
+    // now previous is last node and
+    // first node(firstNode) link address
+    // put in last node(previous) link
+    previous->next = firstNode->next;
+ 
+    // make second node as head node
+    *head = previous->next;
+    free(firstNode);
+    return;
+}
+~~~
+
+#### 2. Deleting the last node of the Circular Linked List
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/d06d4e52-34dd-4747-8b35-5fc27d3123ef)
+
+Approach: 
+- Take two pointers current and previous and traverse the list.
+- Move both pointers such that next of previous is always pointing to current. Keep moving the pointers current and previous until current reaches the last node and previous is at the second last node.
+- Once, the pointer current reaches the last node, do the following:
+  - previous->next = current-> next
+  - head = previous -> next;
+
+~~~
+// Function delete last node of
+// Circular Linked List
+void DeleteLast(struct Node** head)
+{
+    struct Node *current = *head, *temp = *head, *previous;
+ 
+    // check if list doesn't have any node
+    // if not then return
+    if (*head == NULL) {
+        printf("\nList is empty\n");
+        return;
+    }
+ 
+    // check if list have single node
+    // if yes then delete it and return
+    if (current->next == current) {
+        *head = NULL;
+        return;
+    }
+ 
+    // move first node to last
+    // previous
+    while (current->next != *head) {
+        previous = current;
+        current = current->next;
+    }
+ 
+    previous->next = current->next;
+    *head = previous->next;
+    free(current);
+    return;
+}
+~~~
+
+
+#### 3. Deleting nodes at given index in the Circular linked list
+![image](https://github.com/Sourabh-Kumar04/Cpp/assets/155216316/0d3f5b89-8cdd-4843-b45d-30e3c48c8efa)
+
+Approach: 
+- First, find the length of the list. That is, the number of nodes in the list.
+- Take two pointers previous and current to traverse the list. Such that previous is one position behind the current node.
+- Take a variable count initialized to 0 to keep track of the number of nodes traversed.
+- Traverse the list until the given index is reached.
+- Once the given index is reached, do previous->next = current->next.
+~~~
+// Function to delete node at given index
+// of Circular Linked List
+void DeleteAtPosition(Node* head, int index)
+{
+   
+    // find length of list
+    int len = Length(head);
+    int count = 1;
+    Node* previous = head;
+    Node* next = head;
+     
+    // check if list doesn't have any node
+    // if not then return
+    if(head == NULL){
+        cout<<"Delete Last list is empty";
+        return;
+    }
+     
+    // given index is in list or not
+    if(index >= len || index<0){
+        cout<<"Index is not Found";
+        return;
+    }
+     
+    // delete first node
+    if(index == 0){
+        DeleteFirst(head);
+        return;
+    }
+     
+    // traverse first to last node
+    while(len > 0){
+        // if index found delete that node
+        if(index == count){
+            previous->next = next->next;
+            free(next);
+            return;
+        }
+        previous = previous->next;
+        next = previous->next;
+        len--;
+        count++;
+    }
+    return;
+}
+~~~
+
+### Program impleting Deletion of all theabove three function
+~~~
+// C++ program to delete node at different
+// positions from a circular linked list
+#include <bits/stdc++.h>
+using namespace std;
+ 
+// structure for a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+ 
+// Function to insert a node at the end of
+// a Circular linked list
+void Insert(struct Node** head, int data)
+{
+    struct Node* current = *head;
+    // Create a new node
+    struct Node* newNode = new Node;
+ 
+    // check node is created or not
+    if (!newNode) {
+        printf("\nMemory Error\n");
+        return;
+    }
+ 
+    // insert data into newly created node
+    newNode->data = data;
+ 
+    // check list is empty
+    // if not have any node then
+    // make first node it
+    if (*head == NULL) {
+        newNode->next = newNode;
+        *head = newNode;
+        return;
+    } 
+ 
+    // if list have already some node
+    else {
+ 
+        // move first node to last node
+        while (current->next != *head) {
+            current = current->next;
+        }
+ 
+        // put first or head node address
+        // in new node link
+        newNode->next = *head;
+ 
+        // put new node address into last
+        // node link(next)
+        current->next = newNode;
+    }
+}
+ 
+// Function print data of list
+void Display(struct Node* head)
+{
+    struct Node* current = head;
+ 
+    // if list is empty, simply show message
+    if (head == NULL) {
+        printf("\nDisplay List is empty\n");
+        return;
+    }
+ 
+    // traverse first to last node
+    else {
+        do {
+            printf("%d ", current->data);
+            current = current->next;
+        } while (current != head);
+    }
+}
+ 
+// Function return number of nodes present in list
+int Length(struct Node* head)
+{
+    struct Node* current = head;
+    int count = 0;
+ 
+    // if list is empty simply return length zero
+    if (head == NULL) {
+        return 0;
+    }
+ 
+    // traverse first to last node
+    else {
+        do {
+            current = current->next;
+            count++;
+        } while (current != head);
+    }
+    return count;
+}
+ 
+// Function delete First node of Circular Linked List
+void DeleteFirst(struct Node** head)
+{
+    struct Node *previous = *head, *next = *head;
+ 
+    // check list have any node
+    // if not then return
+    if (*head == NULL) {
+        printf("\nList is empty\n");
+        return;
+    }
+ 
+    // check list have single node
+    // if yes then delete it and return
+    if (previous->next == previous) {
+        *head = NULL;
+        return;
+    }
+ 
+    // traverse second to first
+    while (previous->next != *head) {
+ 
+        previous = previous->next;
+        next = previous->next;
+    }
+ 
+    // now previous is last node and
+    // next is first node of list
+    // first node(next) link address
+    // put in last node(previous) link
+    previous->next = next->next;
+ 
+    // make second node as head node
+    *head = previous->next;
+    free(next);
+ 
+    return;
+}
+ 
+// Function to delete last node of
+// Circular Linked List
+void DeleteLast(struct Node** head)
+{
+    struct Node *current = *head, *temp = *head, *previous;
+ 
+    // check if list doesn't have any node
+    // if not then return
+    if (*head == NULL) {
+        printf("\nList is empty\n");
+        return;
+    }
+ 
+    // check if list have single node
+    // if yes then delete it and return
+    if (current->next == current) {
+        *head = NULL;
+        return;
+    }
+ 
+    // move first node to last
+    // previous
+    while (current->next != *head) {
+        previous = current;
+        current = current->next;
+    }
+ 
+    previous->next = current->next;
+    *head = previous->next;
+    free(current);
+ 
+    return;
+}
+ 
+// Function delete node at a given position
+// of Circular Linked List
+void DeleteAtPosition(struct Node** head, int index)
+{
+    // Find length of list
+    int len = Length(*head);
+    int count = 1;
+    struct Node *previous = *head, *next = *head;
+ 
+    // check list have any node
+    // if not then return
+    if (*head == NULL) {
+        printf("\nDelete Last List is empty\n");
+        return;
+    }
+ 
+    // given index is in list or not
+    if (index >= len || index < 0) {
+        printf("\nIndex is not Found\n");
+        return;
+    }
+ 
+    // delete first node
+    if (index == 0) {
+        DeleteFirst(head);
+        return;
+    }
+ 
+    // traverse first to last node
+    while (len > 0) {
+ 
+        // if index found delete that node
+        if (index == count) {
+            previous->next = next->next;
+            free(next);
+            return;
+        }
+        previous = previous->next;
+        next = previous->next;
+        len--;
+        count++;
+    }
+    return;
+}
+ 
+// Driver Code
+int main()
+{
+    struct Node* head = NULL;
+    Insert(&head, 99);
+    Insert(&head, 11);
+    Insert(&head, 22);
+    Insert(&head, 33);
+    Insert(&head, 44);
+    Insert(&head, 55);
+    Insert(&head, 66);
+ 
+    // Deleting Node at position
+    printf("Initial List: ");
+    Display(head);
+    printf("\nAfter Deleting node at index 4: ");
+    DeleteAtPosition(&head, 4);
+    Display(head);
+ 
+    // Deleting first Node
+    printf("\n\nInitial List: ");
+    Display(head);
+    printf("\nAfter Deleting first node: ");
+    DeleteFirst(&head);
+    Display(head);
+ 
+    // Deleting last Node
+    printf("\n\nInitial List: ");
+    Display(head);
+    printf("\nAfter Deleting last node: ");
+    DeleteLast(&head);
+    Display(head);
+ 
+    return 0;
+}
+~~~
+
+Output:
+~~~
+Initial List: 99 11 22 33 44 55 66 
+After Deleting node at index 4: 99 11 22 33 55 66 
+
+Initial List: 99 11 22 33 55 66 
+After Deleting first node: 11 22 33 55 66 
+
+Initial List: 11 22 33 55 66 
+After Deleting last node: 11 22 33 55 
+~~~
 
 
 
