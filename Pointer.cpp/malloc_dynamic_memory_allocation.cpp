@@ -1,3 +1,7 @@
+// Dynamic memory allocation
+// syntax of malloc function:->  data_type* malloc(size_t sizeof(data_type));
+
+
 #include <iostream>
 #include <cstdlib>
 using namespace std;
