@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # C & C++ concept
 
 ##  Why are arrays indexed from zero?
