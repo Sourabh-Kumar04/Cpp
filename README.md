@@ -631,6 +631,16 @@ Value of ptr = 0x7ffe8ba7ec58
 =======
 # C & C++ concept
 
+## Table of Contents
+
+Why Arrays are Indexed from Zero?
+1. Parameter Passing Techniques in C/C++
+2. Static and Dynamic Scoping
+3. Arrays in C
+4. Row Major and Column Major Order
+5. Pointers
+6. Data Structures in C
+
 ##  Why are arrays indexed from zero?
 - Array is typically a contiguous area within the computer memory. In most languages, the variable that we use to refer to this array is inherently a pointer. A pointer that stores the starting address of the contiguous portion of memory.
 - Let's take an example, say there's an integer array arr of 5 numbers in a language where every integer occupies 2 bytes of memory. Say, this array's contiguous area starts at byte address 44 and continues until 54 (requiring 10 bytes, i.e. 5 integers of 2 bytes each).
